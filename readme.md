@@ -1,5 +1,7 @@
 # About me
 
+## Web Dev Spring 2023
+
 <picture>
     <img src="./images/image1.jpg" alt="drawing" width="100"/>
 </picture>
