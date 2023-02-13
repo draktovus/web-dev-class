@@ -1,0 +1,13 @@
+{
+  "name": "web-dev-class",
+  "version": "1.0.0",
+  "description": "## Web Dev Spring 2023",
+  "repository": {
+    "type":"git",
+    "url":"git+https://github.com/draktovus/web-dev-class.git"
+  },
+  "license": "BSD",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
