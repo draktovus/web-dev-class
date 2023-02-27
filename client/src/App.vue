@@ -1,5 +1,6 @@
 <script setup lang="ts">
 	import { RouterLink, RouterView } from 'vue-router'
+	import NavBar from './components/NavBar.vue';
 	let obj = {
 		msg: "Hello from New Paltz!"
 	}
@@ -7,19 +8,10 @@
 </script>
 
 <template>
-	<div class="nav-bar">
-		<ul>
-			<li class="nav-item">
-				<RouterLink to="/">Home</RouterLink>
-			</li>
-			<li class="nav-item">
-				<RouterLink to="/about">About</RouterLink>
-			</li>
-			<li class="nav-item"></li>
-		</ul>
+	<NavBar />
+	<div class="container">
+		<RouterView />
 	</div>
-
-	<RouterView />
 </template>
 
 <style scoped>
