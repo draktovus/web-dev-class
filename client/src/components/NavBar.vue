@@ -1,18 +1,25 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
+import { ref } from 'vue';
+import LoginBadge from './LoginBadge.vue';
 
-const isMenuActive = false
+const isMenuActive = ref(false);
+
+function toggleMenu(){
+    isMenuActive.value = !isMenuActive.value;
+    console.log({isMenuActive});
+}
 </script>
 
 <template>
     <nav class="navbar is-primary">
         <div class="container">
             <div class="navbar-brand">
-                <a class="navbar-item" href="https://bulma.io">
+                <a class="navbar-item" href="">
                     <img src="@/assets/logo.svg" alt="Vue" width="30" height="30">
                 </a>
                 <!-- : is for binding with Vue.js, @ is for Vue.js events -->
-                <div class="navbar-burger" :class="{ 'is-active': isMenuActive }" @click="isMenuActive = !isMenuActive">
+                <div class="navbar-burger" :class="{ 'is-active': isMenuActive }" @click="toggleMenu">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -24,30 +31,30 @@ const isMenuActive = false
                     <RouterLink class="navbar-item" to="/">Home</RouterLink>
                     <RouterLink class="navbar-item" to="/about">About</RouterLink>
                     <div class="navbar-item has-dropdown is-hoverable">
-                        <a class="navbar-link" href="https://bulma.io/documentation/overview/start/">
+                        <a class="navbar-link" href="">
                             Docs
                         </a>
                         <div class="navbar-dropdown">
-                            <a class="navbar-item" href="https://bulma.io/documentation/overview/start/">
+                            <a class="navbar-item" href="">
                                 Overview
                             </a>
-                            <a class="navbar-item" href="https://bulma.io/documentation/overview/modifiers/">
+                            <a class="navbar-item" href="">
                                 Modifiers
                             </a>
-                            <a class="navbar-item" href="https://bulma.io/documentation/columns/basics/">
+                            <a class="navbar-item" href="">
                                 Columns
                             </a>
-                            <a class="navbar-item" href="https://bulma.io/documentation/layout/container/">
+                            <a class="navbar-item" href="">
                                 Layout
                             </a>
-                            <a class="navbar-item" href="https://bulma.io/documentation/form/general/">
+                            <a class="navbar-item" href="">
                                 Form
                             </a>
                             <hr class="navbar-divider">
-                            <a class="navbar-item" href="https://bulma.io/documentation/elements/box/">
+                            <a class="navbar-item" href="">
                                 Elements
                             </a>
-                            <a class="navbar-item is-active" href="https://bulma.io/documentation/components/breadcrumb/">
+                            <a class="navbar-item is-active" href="">
                                 Components
                             </a>
                         </div>
@@ -55,6 +62,8 @@ const isMenuActive = false
                 </div>
 
                 <div class="navbar-end">
+                    <LoginBadge />
+
                     <div class="navbar-item">
                         <div class="field is-grouped">
                             <p class="control">
@@ -71,7 +80,7 @@ const isMenuActive = false
                             </p>
                             <p class="control">
                                 <a class="button is-primary"
-                                    href="https://github.com/jgthms/bulma/releases/download/0.9.3/bulma-0.9.3.zip">
+                                    href="">
                                     <span class="icon">
                                         <i class="fas fa-download"></i>
                                     </span>
