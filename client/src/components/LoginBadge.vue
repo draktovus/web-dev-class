@@ -2,7 +2,7 @@
 import { useSession, login } from '@/model/session';
 import { ref } from 'vue';
 
-const session = useSession();
+const session = useSession(); // common naming function pattern used for returning REACTIVE variables
 
 </script>
 

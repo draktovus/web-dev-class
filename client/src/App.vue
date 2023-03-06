@@ -1,10 +1,9 @@
 <script setup lang="ts">
-	import { RouterLink, RouterView } from 'vue-router'
-	import NavBar from './components/NavBar.vue';
-	let obj = {
-		msg: "Hello from New Paltz!"
-	}
-	obj.msg= "nice."
+import { RouterLink, RouterView } from 'vue-router'
+import NavBar from './components/NavBar.vue';
+import Flyout from '@/components/Flyout.vue'
+import Cart from './components/Cart.vue';
+
 </script>
 
 <template>
@@ -12,7 +11,9 @@
 	<div class="container">
 		<RouterView />
 	</div>
+	<Flyout>
+		<Cart />
+	</Flyout>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>
