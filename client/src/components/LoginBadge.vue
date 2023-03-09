@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import { useSession, login } from '@/model/session';
-import { ref } from 'vue';
+import { useSession, login, useLogout } from '@/model/session';
 
 const session = useSession(); // common naming function pattern used for returning REACTIVE variables
 
+const logout = useLogout();
 </script>
 
 <template>
     <div class="navbar-item" v-if="session.user">
         Welcome, {{ session.user.name }}
-        (<a @click="session.user = null"> logout </a>)
+        (<a @click="logout"> logout </a>)
     </div>
 
     <div class="navbar-item" v-else>
