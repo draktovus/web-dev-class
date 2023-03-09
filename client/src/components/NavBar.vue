@@ -1,9 +1,13 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
 import { ref } from 'vue';
+import { totalQuantity } from '@/model/cart'
 import LoginBadge from './LoginBadge.vue';
+import Flyout from './Flyout.vue';
+import Cart from './Cart.vue';
 
 const isMenuActive = ref(false);
+const isCartActive = ref(false);
 
 function toggleMenu(){
     isMenuActive.value = !isMenuActive.value;
@@ -12,6 +16,7 @@ function toggleMenu(){
 </script>
 
 <template>
+    
     <nav class="navbar is-primary">
         <div class="container">
             <div class="navbar-brand">
@@ -63,6 +68,14 @@ function toggleMenu(){
                 </div>
 
                 <div class="navbar-end">
+                    <div class="navbar-item">
+                        <button class="button is-primary" :class="{ 'is-active': isCartActive }" @click="isCartActive = !isCartActive">
+                            <span class="icon">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span v-if="totalQuantity!=0" class="tag is-danger quantity-tag">{{ totalQuantity }}</span>
+                            </span>
+                        </button>
+                    </div>
                     <LoginBadge />
 
                     <div class="navbar-item">
@@ -94,6 +107,16 @@ function toggleMenu(){
             </div>
         </div>
     </nav>
+    <Flyout :class="{ 'is-active': isCartActive }" >
+		<Cart />
+	</Flyout>
 </template>
 
-<style scoped></style>
+<style scoped>
+.quantity-tag{
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    border-radius: 1rem;
+}
+</style>

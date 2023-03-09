@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useCart, total } from '@/model/cart';
+import { useCart, total, removeFromCart, totalQuantity } from '@/model/cart';
 
 const cart = useCart();
 </script>
@@ -10,20 +10,29 @@ const cart = useCart();
             Cart
             <small>
                 ${{total}}
-                ({{ cart.length }} items)
+                ({{ totalQuantity }} items)
             </small>
         </h1>
         <p></p>
-        <div class="cart-item" v-for="item in cart">
+        <div class="cart-item" v-for="item, index in cart">
             <img :src="item.product.thumbnail" alt="product image" />
             <div>
                 <b>{{ item.product.title }}</b>
                 <p>
                     ${{ item.product.price }}
-                    x {{ item.quantity }}
+                    x
+                    <select v-model="item.quantity" class="quantity-dropdown">
+                        <option v-for="n in 10" :key="n" :value="n">{{ n }}</option>
+                    </select>
                 </p>
             </div>
-
+            <div class="cart-item-remove">
+                <button class="button is-danger" v-on:click="removeFromCart(index)">
+                    <span class="icon">
+                        <i class="fas fa-trash"></i>
+                    </span>
+                </button>
+            </div>
         </div>
     </div>
 </template>

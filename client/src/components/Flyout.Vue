@@ -3,13 +3,14 @@
 </script>
 
 <template>
-    <div class="flyout active">
+    <div class="flyout">
         <slot></slot>
     </div>
 </template>
 
 <style scoped>
 .flyout{
+    z-index: 20;
     position: fixed;
     top: 52px;
     right: -18rem;
@@ -20,7 +21,7 @@
     transition: right 0.5s ease-in-out;
     overflow-y: scroll;
 }
-.flyout.active{
+.flyout.is-active{
     right: 0;
 }
 .flyout:hover{
