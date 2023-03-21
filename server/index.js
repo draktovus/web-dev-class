@@ -3,6 +3,9 @@ const express =  require('express');
 const products = require('./controllers/products')
 const app = express();
 
+// Creates a middleware for json.
+app.
+    use(express.json());
 
 // 127.0.0.1 is the loopback address
 const hostname = '127.0.0.1';
