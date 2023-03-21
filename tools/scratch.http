@@ -1,10 +1,13 @@
 ###
-GET http://localhost:3000/products
+GET http://localhost:3000/api/v1/products
+###
+GET http://localhost:3000/
+
 
 ###
-GET http://localhost:3000/products/1
+GET http://localhost:3000/api/v1/products/1
 ###
-POST http://localhost:3000/products
+POST http://localhost:3000/api/v1/products
 Content-Type: application/json
 some-other-header: yes
 
@@ -28,4 +31,4 @@ some-other-header: yes
     ]
 }
 ###
-GET  http://localhost:3000/products/search/hatake
+GET  http://localhost:3000/api/v1/products/search/hatake
