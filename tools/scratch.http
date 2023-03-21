@@ -1,1 +1,9 @@
-GET https://dummyjson.com/products
+###
+GET http://localhost:3000/
+
+###
+GET http://localhost:3000/products
+###
+POST http://localhost:3000/products
+###
+PATCH http://localhost:3000/products
