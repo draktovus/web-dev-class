@@ -11,7 +11,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server/index.js",
     "dev": "nodemon server/index.js --watch server",
-    "buildserver": "npm i -ws && npm run build -ws"
+    "build": "npm i -ws && npm run build -ws"
   },
   "workspaces":[
     "client"
