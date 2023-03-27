@@ -1,4 +1,5 @@
 import data from '../data/products.json'
+import { api } from './myFetch';
 
 // Helps the autocomplete AI if data is commented above
 /**
@@ -37,5 +38,9 @@ export interface Product {
 }
 
 export function getProducts(): Product[]{
+    api('products').then(res => {
+        console.log(res)
+    })
+
     return data.products;
 }
