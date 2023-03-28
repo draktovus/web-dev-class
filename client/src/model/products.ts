@@ -1,5 +1,4 @@
-import data from '../data/products.json'
-import { api } from './myFetch';
+import { api } from './session';
 
 // Helps the autocomplete AI if data is commented above
 /**
@@ -37,10 +36,6 @@ export interface Product {
     images: Array<string>;
 }
 
-export function getProducts(): Product[]{
-    api('products').then(res => {
-        console.log(res)
-    })
-
-    return data.products;
+export function getProducts(): Promise<Product[]>{
+   return api('products');
 }
