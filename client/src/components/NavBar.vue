@@ -5,6 +5,7 @@ import { totalQuantity } from '@/model/cart'
 import LoginBadge from './LoginBadge.vue';
 import Flyout from './Flyout.vue';
 import Cart from './Cart.vue';
+import Notifications from './Notifications.vue';
 
 const isMenuActive = ref(false);
 const isCartActive = ref(false);
@@ -16,7 +17,6 @@ function toggleMenu(){
 </script>
 
 <template>
-    
     <nav class="navbar is-primary">
         <div class="container">
             <div class="navbar-brand">
@@ -68,6 +68,9 @@ function toggleMenu(){
                 </div>
 
                 <div class="navbar-end">
+                    <div class="navbar-item">
+                        <Notifications />
+                    </div>
                     <div class="navbar-item">
                         <button class="button is-primary" :class="{ 'is-active': isCartActive }" @click="isCartActive = !isCartActive">
                             <span class="icon">
