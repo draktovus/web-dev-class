@@ -6,7 +6,7 @@ import { ref } from 'vue';
 // ref([] as Product[])
 const products = ref<Product[]>([]);
 getProducts().then(data => {
-    products.value = data
+    products.value = data.data
 });
 
 </script>
