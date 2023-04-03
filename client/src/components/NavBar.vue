@@ -37,32 +37,13 @@ function toggleMenu(){
                     <RouterLink class="navbar-item" to="/about">About</RouterLink>
                     <RouterLink class="navbar-item" to="/products">Products</RouterLink>
                     <div class="navbar-item has-dropdown is-hoverable">
-                        <a class="navbar-link" href="">
-                            Docs
+                        <a class="navbar-link">
+                            Admin
                         </a>
                         <div class="navbar-dropdown">
-                            <a class="navbar-item" href="">
-                                Overview
-                            </a>
-                            <a class="navbar-item" href="">
-                                Modifiers
-                            </a>
-                            <a class="navbar-item" href="">
-                                Columns
-                            </a>
-                            <a class="navbar-item" href="">
-                                Layout
-                            </a>
-                            <a class="navbar-item" href="">
-                                Form
-                            </a>
+                            <RouterLink to="/admin/products" class="navbar-item">Product List</RouterLink>
                             <hr class="navbar-divider">
-                            <a class="navbar-item" href="">
-                                Elements
-                            </a>
-                            <a class="navbar-item is-active" href="">
-                                Components
-                            </a>
+                            <RouterLink to="/admin/users" class="navbar-item">Users</RouterLink>
                         </div>
                     </div>
                 </div>

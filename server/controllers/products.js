@@ -48,7 +48,12 @@ router
     .patch('/:id', (req,res) => {
         const product = req.body;
         model.updateProduct(product);
-        res.send(product)
+        const data = {
+            data:product,
+            total: 1,
+            isSuccess: true
+        }
+        res.send(data)
     })
 
     .delete('/:id', (req,res) => {
