@@ -44,3 +44,7 @@ export function getProducts(): Promise<DataListEnvelope<Product>>{
 export function getProduct(id:number): Promise<DataEnvelope<Product>>{
     return api(`products/${id}`);
 }
+
+export function createProduct(product:Product): Promise<DataEnvelope<Product>>{
+    return api('pruducts', product)
+}

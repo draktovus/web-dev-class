@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import type { Product } from '@/model/products';
 import { useRoute } from 'vue-router';
-import { getProduct } from '@/model/products';
+import { getProduct, createProduct, type Product } from '@/model/products';
+import { addMessage } from '@/model/session';
 
 const product = ref<Product>({} as Product);
 const route = useRoute()
@@ -10,7 +10,15 @@ getProduct(+route.params.id).then((data) => {
     product.value = data.data;
 })
 function save(){
-    console.log(product.value)
+    if(product.value.id){
+        createProduct(product.value).then((data) => {
+            console.log(data)
+            addMessage('Product created', 'success')
+        })
+    }
+    else{
+        console.log(product)
+    }
 }
 </script>
 
@@ -27,71 +35,23 @@ function save(){
         </div>
 
         <div class="field">
-            <label class="label">Username</label>
-            <div class="control has-icons-left has-icons-right">
-                <input class="input is-success" type="text" placeholder="Text input" value="bulma">
-                <span class="icon is-small is-left">
-                    <i class="fas fa-user"></i>
-                </span>
-                <span class="icon is-small is-right">
-                    <i class="fas fa-check"></i>
-                </span>
-            </div>
-            <p class="help is-success">This username is available</p>
-        </div>
-
-        <div class="field">
-            <label class="label">Email</label>
-            <div class="control has-icons-left has-icons-right">
-                <input class="input is-danger" type="email" placeholder="Email input" value="hello@">
-                <span class="icon is-small is-left">
-                    <i class="fas fa-envelope"></i>
-                </span>
-                <span class="icon is-small is-right">
-                    <i class="fas fa-exclamation-triangle"></i>
-                </span>
-            </div>
-            <p class="help is-danger">This email is invalid</p>
-        </div>
-
-        <div class="field">
-            <label class="label">Subject</label>
+            <label class="label">Stock</label>
             <div class="control">
-                <div class="select">
-                    <select>
-                        <option>Select dropdown</option>
-                        <option>With options</option>
-                    </select>
-                </div>
+                <input class="input" type="text" placeholder="Product Stock" v-model="product.stock">
             </div>
         </div>
 
         <div class="field">
-            <label class="label">Message</label>
+            <label class="label">Price</label>
             <div class="control">
-                <textarea class="textarea" placeholder="Textarea"></textarea>
+                <input class="input" type="text" placeholder="Product Price" v-model="product.price">
             </div>
         </div>
 
         <div class="field">
+            <label class="label">Category</label>
             <div class="control">
-                <label class="checkbox">
-                    <input type="checkbox">
-                    I agree to the <a href="#">terms and conditions</a>
-                </label>
-            </div>
-        </div>
-
-        <div class="field">
-            <div class="control">
-                <label class="radio">
-                    <input type="radio" name="question">
-                    Yes
-                </label>
-                <label class="radio">
-                    <input type="radio" name="question">
-                    No
-                </label>
+                <input class="input" type="text" placeholder="Product Category" v-model="product.category">
             </div>
         </div>
 
