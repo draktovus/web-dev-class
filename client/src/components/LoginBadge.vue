@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { useSession, login, useLogout } from '@/model/session';
+import { useSession, useLogin, useLogout } from '@/model/session';
 
 const session = useSession(); // common naming function pattern used for returning REACTIVE variables
 
 const logout = useLogout();
+const login = useLogin()
 </script>
 
 <template>
