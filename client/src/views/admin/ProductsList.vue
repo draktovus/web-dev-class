@@ -2,14 +2,26 @@
 import { RouterLink } from 'vue-router';
 import {ref} from 'vue';
 import { getProducts, type Product } from '@/model/products';
-
+import GenModalVue from '@/components/GenModal.vue';
+import { confirm } from '@/model/genModals';
 const products = ref<Product[]>([]);
 getProducts().then(data => {
     products.value = data.data
 });
+
+function deleteProducts(id:number){
+    confirm('Are you sure you want to delete this?', "question")
+    .then((x)=>{
+        console.log("delete " + id)
+    })
+    .catch((x)=>{
+        console.log("didn't delete " + id)
+    })
+}
 </script>
 
 <template>
+    <GenModalVue></GenModalVue>
     <div class="admin-products-list">
         <h1 class="title">Products</h1>
         <RouterLink to="/admin/products/edit/" class="button is-primary admin-add-product">
@@ -46,11 +58,11 @@ getProducts().then(data => {
                                 <i class="fas fa-edit"></i>
                             </div>
                         </RouterLink>
-                        <RouterLink class="button is-danger" :to="'/admin/products/edit/' + product.id">
+                        <button class="button" @click="deleteProducts(product.id)">
                             <div class="icon">
                                 <i class="fas fa-trash"></i>
                             </div>
-                        </RouterLink>
+                        </button>
                     </td>
                 </tr>
             </tbody>
