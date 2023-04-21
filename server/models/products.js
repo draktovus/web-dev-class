@@ -1,51 +1,78 @@
 const data = require('../data/products.json');
-const { connect, ObjectId} = require('./mongo')
+const { connect, ObjectId } = require('./mongo')
 
 const COLLECTION_NAME = 'products'
 
-async function collection(){
+async function collection() {
     const db = await connect();
-    return db.collection(COLLECTION_NAME)
+    return db.collection(COLLECTION_NAME);
 }
 
-async function getProducts(){
+async function getAll(page=1, pageSize=30) {
     const col = await collection();
-    const items = await col.find().toArray();
-
-    return items
+    const items = await col.find().skip((page-1)*pageSize).limit(pageSize).toArray();
+    const total = await col.countDocuments();
+    return {items,total};
 }
 
-function getProductById(id){
-    return data.products.find(product => product.id === id);
+async function getById(id) {
+    const col = await collection();
+    const item = await col.findOne({ id: id });
+    return item;
 }
 
-function addProduct(product){
-    product.id = data.products.length + 1;
-    data.products.push(product);
+async function add(item) {
+    const col = await collection();
+    const result = await col.insertOne(item);
+
+    item._id = result.insertedId;
+    return result;
 }
 
-function updateProduct(product){
-    const index = data.products.findIndex(p => p.id === product.id);
-    data.products[index] = product;
+async function update(item) {
+    const col = await collection();
+    const result = await col.findOneAndDelete(
+        { _id: new ObjectId(item.id) },
+        { $set: item },
+        { returnDocument: 'after' }
+    );
+    return result.value;
 }
 
-function deleteProduct(product){
-    const index = data.products.findIndex(p => p.id === product.id);
-    data.products.splice(index, 1);
+async function deleteItem(id) {
+    const col = await collection();
+    const result = await col.deleteOne({ _id: new ObjectId(id) });
+    return result.deletedCount
 }
 
 //search function for product in json
-function searchProduct(searchTerm){
-    const products = data.products.filter(product => product.title.toLowerCase().includes(searchTerm.toLowerCase()));
-    return products;
+async function search(searchTerm, page = 1, pageSize = 30) {
+    const col = await collection();
+    // option 'i' is case insensitive
+    const query = {
+        $or: [
+            { title: { $regex: searchTerm, $options: 'i' } },
+            { description: { $regex: searchTerm, $options: 'i' } },
+            { brand: { $regex: searchTerm, $options: 'i' } }
+        ]
+    }
+    const items = await col.find(query).skip((page-1) * pageSize).limit(pageSize).toArray();
+    const total = await col.countDocuments(query);
+    return { items, total };
+}
+
+async function seed(){
+    const col = await collection();
+    const result = await col.insertMany(data.products);
+    return result.insertedCount;
 }
 
 module.exports = {
-    collection,
-    getProducts,
-    getProductById,
-    addProduct,
-    updateProduct,
-    deleteProduct,
-    searchProduct,
+    getAll,
+    getById,
+    add,
+    update,
+    deleteItem,
+    search,
+    seed
 }
