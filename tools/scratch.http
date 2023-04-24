@@ -36,3 +36,19 @@ GET  http://localhost:3000/api/v1/products/search/hatake
 
 ###
 POST http://localhost:3070/api/v1/users/seed
+
+###
+GET http://localhost:3070/api/v1/users
+Content-Type: application/json
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDQ2Yzg1M2RkZjYwMDlmYzY3ZjlmNjAiLCJuYW1lIjoiSm9obiBEb2UiLCJlbWFpbCI6ImpvaG5AZG9lLmNvbSIsInJvbGUiOiJhZG1pbiIsInBob3RvIjoiaHR0cHM6Ly9yb2JvaGFzaC5vcmcvaGljdmVsZGljdGEucG5nIiwiaWF0IjoxNjgyMzYzNzAxLCJleHAiOjE2ODI0NTAxMDF9.7fO2nOtWdBENwOWZ7uzo6ChTwLTsyg-pH5mihKlzfwA"
+}
+###
+POST http://localhost:3070/api/v1/users/login
+Content-Type: application/json
+
+{
+    "email": "john@doe.com",
+    "password": "password"
+}

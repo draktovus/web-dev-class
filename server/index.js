@@ -6,6 +6,7 @@ const express =  require('express');
 const products = require('./controllers/products');
 const jokes = require('./controllers/jokes')
 const users = require('./controllers/users')
+const { requireLogin } = require('./middleware/authorization')
 const app = express();
 
 // 127.0.0.1 is the loopback address
@@ -25,10 +26,10 @@ app
 
 // Actions
 app
-    .get('/', (req, res) => {
+    .get('/api/v1/', (req, res) => {
         res.send("Hello New Paltz from Express!")
     })
-    .use('/api/v1/products', products)
+    .use('/api/v1/products', requireLogin(), products)
     .use('/api/v1/jokes', jokes)
     .use('/api/v1/users', users)
 
