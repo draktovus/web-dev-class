@@ -1,5 +1,5 @@
 ###
-GET http://localhost:3000/api/v1/products
+GET http://localhost:3070/api/v1/products
 ###
 GET http://localhost:3000/
 
@@ -32,3 +32,7 @@ some-other-header: yes
 }
 ###
 GET  http://localhost:3000/api/v1/products/search/hatake
+
+
+###
+POST http://localhost:3070/api/v1/users/seed

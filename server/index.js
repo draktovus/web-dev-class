@@ -5,6 +5,7 @@ const path = require('path')
 const express =  require('express');
 const products = require('./controllers/products');
 const jokes = require('./controllers/jokes')
+const users = require('./controllers/users')
 const app = express();
 
 // 127.0.0.1 is the loopback address
@@ -29,6 +30,7 @@ app
     })
     .use('/api/v1/products', products)
     .use('/api/v1/jokes', jokes)
+    .use('/api/v1/users', users)
 
 // Catch all (called deep linking)
 app.get('*', (req,res) => {
