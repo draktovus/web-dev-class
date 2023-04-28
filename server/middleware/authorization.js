@@ -1,26 +1,42 @@
 const users = require('../models/users')
 
 module.exports = {
-    requireLogin(requiresAdmin = false){
+    parseAuthorizationHeader() {
         return (req, res, next) => {
-            const header = req.headers.authorization;
-            if(header){
-                const token = header.split(' ')[1];
-                users.verifyTokenAsync(token)
-                .then(user =>{
-                    if(user && (!requiresAdmin || user.role === 'admin')){
-                        req.user = user;
-                        next();
-                    }else{
-                        next({code: 401, message: "Invalid token"})
-                    }
-                })
-                .catch(err=>{
-                    next({code: 401, message: err})
-                })
+            console.log('2')
+            const token = req.headers.authorization?.split(' ')[1];
+            console.log('1')
+            if (token) {
+                users.verifyTokenAsync(token).then(user => {
+                    req.user = user;
+                    next()
+                }).catch(err => {
+                    next({ code: 401, message: err })
+                });
             }
             else {
-                next({code: 401, message: "Missing token"})
+                next();
+            }
+        }
+    },
+    requireLogin(requiresAdmin = false) {
+        return (req, res, next) => {
+            if (req.user) {
+                if (req.user.role !== 'admin' && !requiresAdmin) {
+                    next({
+                        code: 403,
+                        message: "This resource is admin only."
+                    })
+                }
+                else {
+                    next();
+                }
+            }
+            else {
+                next({
+                    code: 401,
+                    message: "You must be logged in to access this resource."
+                })
             }
         }
     }

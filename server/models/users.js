@@ -102,7 +102,7 @@ async function login(email, password) {
     // private key, dont share with anybody
     // use public to share/store private
     const cleanUser = {...user, password: undefined}
-    const token = await generateTokenAsync(cleanUser, process.env.JWT_SECRET, '1d')
+    const token = await generateTokenAsync(cleanUser, '1d')
 
     return {user:cleanUser, token}
 }
@@ -114,9 +114,9 @@ async function oAuthLogin(provider, accessToken) {
     // return the user
 }
 
-function generateTokenAsync(user, secret ,expiresIn) {
+function generateTokenAsync(user,expiresIn) {
     return new Promise((resolve, reject) => {
-        jwt.sign(user, secret, { expiresIn }, (err, token) => {
+        jwt.sign(user, process.env.JWT_SECRET, { expiresIn }, (err, token) => {
             if (err) {
                 reject(err);
             } else {
