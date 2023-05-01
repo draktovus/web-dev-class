@@ -3,9 +3,7 @@ const users = require('../models/users')
 module.exports = {
     parseAuthorizationHeader() {
         return (req, res, next) => {
-            console.log('2')
             const token = req.headers.authorization?.split(' ')[1];
-            console.log('1')
             if (token) {
                 users.verifyTokenAsync(token).then(user => {
                     req.user = user;

@@ -8,7 +8,7 @@ onMounted(()=>{
     initMap();
 })
 
-const mapDiv = ref<HTMLElement | null> (null);
+const mapDiv = ref<HTMLElement | null>(null);
 async function initMap(): Promise<void> {
     await loadScript(`https://maps.googleapis.com/maps/api/js?key=${import.meta.env.VITE_GOOGLE_API_KEY}`, 'google-maps')
     
@@ -16,7 +16,7 @@ async function initMap(): Promise<void> {
     const position = { lat: -41.751413703169256, lng: -74.08852850892997 };
 
     map = new google.maps.Map(
-        mapDiv.value,
+        mapDiv.value!,
         {
             zoom: 14,
             center: position,
@@ -33,7 +33,6 @@ async function initMap(): Promise<void> {
 </script>
 
 <script lang="ts">
-    declare const google:any;
 </script>
 
 <template>
