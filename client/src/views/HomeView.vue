@@ -2,13 +2,13 @@
 import ModalVue from '@/components/Modal.vue';
 import GenModal from '@/components/GenModal.vue';
 import { ref } from 'vue';
-const isOpen = ref(true);
+const isOpen = ref(false);
 </script>
 
 <template>
   <main>
     <p>
-      <button class="button" @click="isOpen = !isOpen">
+      <button class="button" @click="isOpen=!isOpen">
         Open
       </button>
     </p>

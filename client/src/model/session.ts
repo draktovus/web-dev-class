@@ -30,9 +30,11 @@ export function useSession(){
 export function api(url:string, data?:any, method?:string, headers?:any){
     session.isLoading = true
 
-    headers = {
-        "Authorization": `Bearer ${session.user?.token}`,
-        ...headers
+    if(session.user?.token){
+        headers = {
+            "Authorization": `Bearer ${session.user.token}`,
+            ...headers,
+        }
     }
 
     return myFetch.api(url, data, method, headers)

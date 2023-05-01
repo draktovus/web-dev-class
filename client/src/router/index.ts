@@ -43,6 +43,12 @@ const router = createRouter({
       component: () => import('../views/admin/ProductEdit.vue'),
       beforeEnter: secureRoute
     },
+    {
+      path: '/storeLocations',
+      name: 'store-locations',
+      component: () => import('../views/StoreLocations.vue'),
+      beforeEnter: secureRoute
+    },
   ]
 })
 
