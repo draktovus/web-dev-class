@@ -7,7 +7,7 @@ export default function Navbar() {
                 <div className="container">
                     <div className="navbar-brand">
                         <a className="navbar-item" href="">
-                            <img src="@/assets/logo.svg" alt="Vue" width="30" height="30">
+                            <img src="@/assets/logo.svg" alt="Vue" width="30" height="30" />
                         </a>
                         <div className="navbar-burger" >
                             <span></span>
@@ -28,8 +28,8 @@ export default function Navbar() {
                                 </a>
                                 <div className="navbar-dropdown">
                                     <Link href="/admin/products" className="navbar-item">Product List</Link>
-                                    <hr className="navbar-divider">
-                                        <Link href="/admin/users" className="navbar-item">Users</Link>
+                                    <hr className="navbar-divider" />
+                                    <Link href="/admin/users" className="navbar-item">Users</Link>
                                 </div>
                             </div>
                         </div>
