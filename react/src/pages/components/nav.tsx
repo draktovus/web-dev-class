@@ -2,7 +2,9 @@ import cn from 'classnames';
 import Link from 'next/link';
 import { ReactNode, useState } from 'react';
 
-const quantity = 0;
+import { quantity } from '@/model/cart'
+
+import LoginBadge from './LoginBadge';
 
 const Notifications = () => {
     return (
@@ -10,15 +12,9 @@ const Notifications = () => {
     )
 }
 
-const LoginBadge = () => {
-    return (
-        <h1>LoginBadge</h1>
-    )
-}
-
 const Flyout = ({children, className}: {children: ReactNode, className: string}) => {
     return (
-        <div className={cn("flyout",{ className })}>
+        <div className={cn("flyout", className)}>
             {children}
         </div>
     )

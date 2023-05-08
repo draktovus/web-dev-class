@@ -1,11 +1,9 @@
 /* MR
 */
-
-import { reactive } from "vue";
-import { useRouter } from "vue-router";
+import { useRouter } from 'next/router';
 import * as myFetch from './myFetch';
 
-const session = reactive({
+const session = {
     user: null as User | null,
     isLoading: false,
     messages: [] as {
@@ -13,7 +11,7 @@ const session = reactive({
         type: "success" | "danger" | "warning" | "info",
     }[],
     redirectUrl: null as string | null,
-})
+}
 
 interface User {
     id?:number;
